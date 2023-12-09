@@ -1,0 +1,302 @@
+<!-- This is for Admin -->
+<html>
+<head> 
+<style>
+:root {
+      --primary-color: #1E90FF; /* blue */
+      --secondary-color: #FFFFFF; /* white */
+      --tertiary-color: #808080; /*grey*/
+    }
+body {
+    background-color: var(--secondary-color);
+    /* align-items: center; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* flex-direction: column; */
+}
+.container {
+    width: 97.3%;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding-bottom: 5%;
+
+}
+.container2 {
+    width: 50%;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding-bottom: 5%;
+
+}
+input[type="submit"] {
+    
+    width: 10%;
+    padding: 10px 15px;   
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+  }
+  
+
+#Heading{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    font-size: 3em;
+    color: var(--primary-color);
+}
+#adddiv{
+    display: flex;
+    justify-content: center;
+}
+#logoutbtndiv{
+    display: flex;
+    font-size: large;
+    justify-content: flex-end;
+}
+#logoutbtn{
+    text-decoration: none;
+}
+#add{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    width: 30%;
+    padding: 7px 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+#add:hover {
+      background-color: var(--secondary-color);
+      color: var(--primary-color);
+    }
+#tab{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+#data_no {
+    display: flex;
+    align-items: center;
+}
+form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-items: center;
+    }
+    .form-field-department {
+	width: 80%;
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: none;
+      box-sizing: border-box;
+      border: 1px solid var(--primary-color);
+      font-size: 14px;
+      color: black;
+    }
+
+    
+#mid {
+    height:5%;
+}
+#wid {
+    width:5%;
+}
+#lab1 {
+    padding-right: 2%;
+}
+#tablenos {
+    width: 4%;
+}
+#tasks_table {
+    font-size: large;
+    width: 100%;
+}
+
+#creds_table {
+    font-size: large;
+    width: 100%;
+}
+
+</style>
+<title>Admin</title>
+</head>
+<body>
+    <div id="logoutbtndiv">
+    <a id="logoutbtn" href="logout/">Logout</a>
+</div>
+    <label id="Heading">Dashboard</label>
+<div class="container2">
+    <table id="data_no" border="1">
+        <tr>
+            <th colspan="2">
+    Total Pending Complaints:</th><th colspan="2"> {{Pending}}</th>
+    <th colspan="3">
+        Pending on {{date}}:</th><th colspan="2" id="tablenos">{{Pending_today}}</th>
+    </th>
+    <!-- <th colspan="4">
+        This Month Progress({{Month}})
+    </th> -->
+        </tr>
+        <tr>
+   <th>Admin</th><th>{{count_Admin}}</th>
+   <th>IT</th><th>{{count_IT}}</th>
+   <!-- <th></th><th>From Before</th>><th>{{still_pending}}</th> -->
+        </tr>
+        <tr>
+    <th>Accounts</th><th>{{count_Accounts}}</th>
+    <th>Civil</th><th> {{count_Civil}}</th>
+    <!-- <th></th><th>Opened Today</th><th>{{today_open}}</th> -->
+        </tr>
+        <tr>
+    <th>Electrical</th><th>{{count_Electrical}}</th>
+    <th>Transport</th><th>{{count_Transport}}</th>
+    <!-- <th></th><th>Closed Today</th><th>{{today_closed}}</th> -->
+            </tr>
+            <tr>
+    <th>Workshop</th><th>{{count_Workshop}}</th>
+                </tr>
+    
+    
+</table>
+</div>
+<div id="mid"></div>
+<label id="Heading">Complaints</label>
+<div id="mid"></div>
+    <div class="container">
+    <!-- <form action="filter/" method="post">
+        {% csrf_token %}
+    <label for="Filter" id="lab1">Department:</label>
+    <select id="Filter" name="Filter" class=".form-field-department" required>
+            <option value="None">All</option>
+            <option value="Admin">Admin</option>
+            <option value="IT">IT</option>
+            <option value="Accounts">Accounts</option>
+        </select>
+        <div id="wid"></div>
+    <input type="submit" value="Filter">   
+</form> -->
+
+
+    <table border="1" id="tasks_table">
+        <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Complaint</th>
+            <th>Unit</th>
+            <th>Department</th>
+            <th>Progress</th>
+            <th>Remarks</th>
+        </tr>
+        {% for i in tasks %}
+            <td>{{i.date}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.task_subject}}</td>
+            <td>{{i.unit}}</td>
+            <td>{{i.department}}</td>
+            {% if i.progress == 'True' %}
+            <td>{{i.task_dets}}</td>
+            <td><a href="remarks/{{i.id}}">View Remarks</a></td>
+            {% else %}
+                <td><a href="update/{{i.id}}">Modify</a></td>
+                <td><b>Pending</b></td>
+                {% endif %}
+            </tr>
+
+        {% endfor %}
+
+        {% for i in closedtasks %}
+            <td>{{i.date}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.task_subject}}</td>
+            <td>{{i.unit}}</td>
+            <td>{{i.department}}</td>
+            <td>{{i.task_dets}}</td>
+            <td><b>Closed</b></td>
+            
+            </tr>
+
+        {% endfor %}
+    </table>
+    </div>
+    <div id="mid"></div>
+    <div id="adddiv">
+    <a id="add" href="add/"><h3>New Complaint</h3></a>
+    </div>
+
+    <div id="mid"></div>
+
+
+    <div class="container">
+        
+    
+        <table border="1" id="creds_table">
+            <tr>
+                <th>Name</th>
+                <th>Employee ID</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>User ID</th>
+                <th>Password</th>
+                <th>Department</th>
+                <th>Unit</th>
+                <th>Status</th>
+            </tr>
+            {% for i in creds %}
+            <td>{{i.name}}</td>
+                <td>{{i.emp_id}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.phone}}</td>
+                <td>{{i.u_id}}</td>
+                <td>{{i.password}}</td>
+                <td>{{i.dept}}</td>
+                <td>{{i.unit}}</td>
+                <td>{{i.status}}</td>
+                <td><a href="register/edit/{{i.u_id}}">Edit</a></td>
+                </tr>
+    
+            {% endfor %}
+
+            {% for i in creds2 %}
+            <td>{{i.name}}</td>
+                <td>{{i.emp_id}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.phone}}</td>
+                <td>{{i.u_id}}</td>
+                <td>{{i.password}}</td>
+                <td>{{i.dept}}</td>
+                <td>{{i.unit}}</td>
+                <td>{{i.status}}</td>
+                <td><a href="register/edit/{{i.u_id}}">Edit</a></td>
+
+                </tr>
+    
+            {% endfor %}
+        </table>
+    </div>
+    <div id="mid"></div>
+    <div id="adddiv">
+    <a id="add" href="register/"><h3>Register User</h3></a>
+    </div> 
+    
+</body>
+</html>

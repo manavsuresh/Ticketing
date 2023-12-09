@@ -1,0 +1,26 @@
+<html>
+    <title>Email Sender</title>
+<body>
+    <h2></h2>
+<form action="sendmail/" method="post">
+    {% csrf_token %}
+    Sender mail: 
+    <input name="sender" type="email">
+    <br><br>
+    Password:
+    <input name="password" type="password">
+    <br><br>
+    Recipient: 
+    <input type="email" name="recievers">
+    <br><br>
+    Subject: 
+    <input type="text" name="subject">
+    <br><br>
+    Content:<br>
+    <textarea name="content" rows="10" columns="150">
+</textarea>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!-- This is for departments -->
+<html>
+<head> 
+<style>
+:root {
+      --primary-color: #1E90FF; /* blue */
+      --secondary-color: #FFFFFF; /* white */
+      --tertiary-color: #808080; /*grey*/
+    }
+body {
+    background-color: var(--secondary-color);
+    /* align-items: center; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* flex-direction: column; */
+}
+.container {
+    width: 97.3%;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding-bottom: 5%;
+    display: flex;
+    justify-content: center;
+}
+table {
+    text-align: center;
+    width: 99%;
+}
+
+table th {
+    text-align: center;
+}
+table td.complaint {
+    text-align:left;
+}
+#Heading{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    font-size: 3em;
+    color: var(--primary-color);
+}
+#add{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    width: 30%;
+    padding: 7px 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+#add:hover {
+      background-color: var(--secondary-color);
+      color: var(--primary-color);
+    }
+#logoutbtndiv{
+    display: flex;
+    font-size: large;
+    justify-content: flex-end;
+}
+#logoutbtn{
+    text-decoration: none;
+}
+#mid {
+    height:5%;
+}
+#adddiv{
+    display: flex;
+    justify-content: center;
+}
+</style>
+<title>Complains</title>
+</head>
+<body>
+    <div id="logoutbtndiv">
+    <a id="logoutbtn" href="logout/">Logout</a>
+    </div>
+    <label id="Heading">Complaints</label>
+    <div class="container">
+    <table border="1" style="font-size: large;">
+        <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Complaint</th>
+            <th>Unit</th>
+            <th>Department</th>
+            <th>Progress</th>
+            <th>Remarks</th>
+           
+        </tr>
+        {% for i in tasks %}
+            <td>{{i.date}}</td>
+            <td>{{i.name}}</td>
+            <td class="complaint">{{i.task_subject}}</td>
+            <td>{{i.unit}}</td>
+            <td>{{i.department}}</td>
+
+            {% if i.progress == 'True' %}
+            <td>{{i.task_dets}}</td>
+            <td><a href="remarks/{{i.id}}">View Remarks</a></td>
+            {% else %}
+                <td><a href="update/{{i.id}}">Modify</a></td>
+                <td><b>Pending</b></td>
+                {% endif %}
+            </tr>
+
+        {% endfor %}
+<!-- Your complaints -->
+        {% for i in mytask %}
+            <td>{{i.date}}</td>
+            <td>{{i.name}}</td>
+            <td class="complaint">{{i.task_subject}}</td>
+            <td>{{i.unit}}</td>
+            <td>{{i.department}}</td>
+
+            {% if i.progress == 'True' %}
+            <td>{{i.task_dets}}</td>
+            <td><a href="remarks/{{i.id}}">View Remarks</a></td>
+            {% else %}
+                <td><a href="update/{{i.id}}">Modify</a></td>
+                <td><b>Pending</b></td>
+                {% endif %}
+            </tr>
+
+        {% endfor %}
+    </table>
+    </div>
+    <div id="mid"></div>
+    <div id="adddiv">
+    <a id="add" href="add/"><h3>New Complaint</h3></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html style="background-color: antiquewhite;">
+    <title>Register User</title>
+<body>
+    <h2>Register</h2>
+    <form action = 'process/' method="post">
+        {% csrf_token %}
+        Name:
+        <input type="text" name="Name" required>
+        <br><br>
+        User ID:
+        <input type="text" name="UID" required>
+        <br><br>
+        Email ID:
+        <input type="email" name="Email" required>
+        <br><br>
+        Password:
+        <input type="password" name="password" required>
+        <br><br>
+        Department:
+        <select name="department" required>
+            <option value="Client">Client</option>
+            <option value="Admin">Admin</option>
+            <option value="IT">IT</option>
+            <option value="Accounts">Accounts</option>
+        </select>
+        <!-- <br>
+        <input type="radio" id="1" value ="Admin" name="department">
+        <label for="1">Admin</label><br>
+        <input type="radio" id=2 value ="IT" name="department">
+        <label for="2">IT</label><br>
+        <input type="radio" id=3 value ="Accounts" name="department">
+        <label for="1">Accounts</label><br>
+        <input type="radio" id=4 value ="Client" name="department">
+        <label for="4">Client</label><br> -->
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
