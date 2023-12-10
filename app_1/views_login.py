@@ -3,8 +3,6 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Credentials, todo
-from .serializers import todoSerializer,credsSerializer
-from rest_framework import viewsets
 from . import views
 from . import views_ticketing
 import logging

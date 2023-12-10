@@ -4,8 +4,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import todo
 from .models import Credentials as cred
-from .serializers import todoSerializer,credsSerializer
-from rest_framework import viewsets
 from . import views
 from . import views_login
 import logging
